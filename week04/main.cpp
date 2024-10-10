@@ -3,7 +3,7 @@
 #include <string> // std::string
 
 // =====
-// Výpis
+//! Výpis
 // =====
 
 void vypis() {
@@ -16,13 +16,13 @@ void vypis() {
  *
  * 4 základní datové typy:
  *     - int - celé číslo se znaménkem
- *     - fload - číslo s desetionou částí
+ *     - float - číslo s desetionou částí
  *     - bool - pravda/nepravda
  *     - char - znak
  */
 
 // ========
-// Proměnné
+//! Proměnné
 // ========
 
  /* Způsob jak si v programu něco pamatovat
@@ -51,7 +51,7 @@ void promenne() {
 
 
 // ======
-// Funkce
+//! Funkce
 // ======
 
 /* Podprogram
@@ -65,7 +65,7 @@ void promenne() {
  }
 
 // =====
-// Scope
+//! Scope       oblast působení -> precedenc závorek (jejich použití a způsob volání)
 // =====
 
 int a = 0;
@@ -88,7 +88,7 @@ void scope() {
 }
 
 // =====
-// Cykly
+//! Cykly
 // =====
 
 void cykly() {
@@ -103,7 +103,7 @@ void cykly() {
     }
 
     i = 0;
-    do {
+    do {                                //! prvně provede následně kontroluje hodnotu
         std::cout << i << std::endl;
         i++;
     } while (i < 10);
