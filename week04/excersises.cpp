@@ -85,8 +85,25 @@ void print_pyramid_l(unsigned int height) {
 //  ***
 // ****
 void print_pyramid_r(unsigned int height) {
-    int mezera = height-1;
-    //for(int i =0;mezera<i;i++)
+    int sirka =1;
+    int mezera_sirka = height-1;
+    for(int i =0;i<height;i++)
+    {
+        for (int i =0; i<mezera_sirka;i++)
+        {
+
+            std::cout << " " ;
+        }
+        for(int i =0;i<sirka;i++)
+        {
+            std::cout << "*" ;//<< std::endl;
+            
+        }
+        std::cout << " "<< std::endl;
+        sirka++;
+        mezera_sirka--;
+    }
+   
 }
 
 // Funkce vypíše takovýto trojúhelník o zadané výšce
@@ -95,6 +112,23 @@ void print_pyramid_r(unsigned int height) {
 //  *****
 // *******
 void print_pyramid(unsigned int height) {
+        int sirka =1;
+    int mezera_sirka = height-1;
+    for(int i =0;i<height;i++)
+    {
+        for (int i =0; i<mezera_sirka;i++)
+        {
+            std::cout << " " ;
+        }
+        for(int i =0;i<sirka;i++)
+        {
+            std::cout << "*" ;//<< std::endl;
+            
+        }
+        std::cout << " "<< std::endl;
+        sirka= sirka+2;
+        mezera_sirka--;
+    }
 }
 
 // Funkce vypíše takovýto trojúhelník o zadané výšce
@@ -103,12 +137,31 @@ void print_pyramid(unsigned int height) {
 //   ***
 //    *
 void print_pyramid_inverse(unsigned int height) {
+    
+    int sirka =(height*2)-1;
+    int mezera_sirka = 0;
+    for(int i =0;i<height;i++)
+    {
+        for (int i =0; i<mezera_sirka;i++)
+        {
+            std::cout << " " ;
+        }
+        for(int i =0;i<sirka;i++)
+        {
+            std::cout << "*" ;//<< std::endl;
+            
+        }
+        std::cout << " "<< std::endl;
+        sirka= sirka-2;
+        mezera_sirka++;
+    }
+
 }
 
 int main() {
-    //! musim napsat do terminalu by mi jel program -> make excersises && ./excersises 
+    //! musim napsat do terminalu by mi jel program -> make excersises && ./excersises
    // bool vysledk = is_even(4);
     std::cout << "poved" << std::endl;
-    print_pyramid_l(4);
+    print_pyramid_inverse(4);
     
 }
