@@ -162,6 +162,6 @@ int main() {
     //! musim napsat do terminalu by mi jel program -> make excersises && ./excersises
    // bool vysledk = is_even(4);
     std::cout << "poved" << std::endl;
-    print_pyramid_inverse(4);
+    print_pyramid(9);
     
 }
