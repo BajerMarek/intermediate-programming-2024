@@ -54,49 +54,13 @@ for(int i = 0;i<delka_vysledku;i++)
 }
 std::cout<<"vysledek: "<<vysledek<<std::endl;
 return 0;
-}
+}/*
 int main()
 {
     power_digit_sum(1234);
-    /*
-    
-int number;
-//! Inicalizace hodnot
-std::cout<<"zadejte NUMBER: ";
-std::cin>>number;
-std::cout<<"NUMBER = "<<number<<std::endl;
-//! převod na číslice
-std::string number_txt = std::to_string(number);
-//? prevod an obraceny vysledek 7 soustavy
-std::string obraceny_vysledek;
-std::string vysledek_7s;
-int i =0;
-while(number>0)
-{
-    
-    obraceny_vysledek.push_back('0'+ (number%7));
-    number= number/7;
-    i++;
-}
 
-std::cout<<"obraceny_vysledek: "<<obraceny_vysledek<<std::endl;
-//? otocení vysledku
-int delka_obraceneho_vysldeku = obraceny_vysledek.length()-1;
-for (int i=delka_obraceneho_vysldeku; i>=0;i--)
-{
-    vysledek_7s.push_back(obraceny_vysledek[i]);
-}
-std::cout<<"vysledek_7s: "<<vysledek_7s<<std::endl;
-int delka_vysledku = vysledek_7s.length();
-//? vytvarení power_digit
-int vysledek;
-for(int i = 0;i<delka_vysledku;i++)
-{
-    vysledek += std::pow((vysledek_7s[i]-'0'),i+1);
-}
-std::cout<<"vysledek: "<<vysledek<<std::endl;
-return 0;*/
-}
+    return 0;
+}*/
 
 
 
@@ -105,14 +69,29 @@ return 0;*/
 // maximální hodnotu (tzn. libovolné ⟦x⟧ takové, že pro všechny ⟦x'⟧
 // platí ⟦f(x) ≥ f(x')⟧, kde ⟦f⟧ je funkce, kterou počítá podprogram
 // ‹poly›).
-/*
+
 int poly(int x) 
 {
     return 10 + 30 * x - 15 * x * x * x + x * x * x * x * x;
 }
+int max_poly(int low, int high)
+{
+    int nejvisi_vysledek = 0;
+    for(int i = low;i<high;i++)
+    {
+        int aktualni_vysledek = poly(i);
+        //std::cout<<"aktualni vysledek: "<<poly(i)<<std::endl;
+        if(aktualni_vysledek>nejvisi_vysledek)
+        {
+            nejvisi_vysledek = aktualni_vysledek;
+        }
+    }
+    return nejvisi_vysledek;
+}
 int main()
 {
-}*/
+    std::cout<<"VYSLEDEK = "<<max_poly(1,5)<<std::endl;
+}
 
 
 // Napište funkci, která zjistí, kolik bude pracovních dnů v roce
