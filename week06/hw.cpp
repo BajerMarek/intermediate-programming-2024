@@ -1,4 +1,10 @@
-#include <cassert>
+#include <iostream>
+# include <vector>
+# include <cstdlib>
+# include <ctime>
+# include <cmath>
+
+# include <string>
 // TODO: doplťe co potřebujete
 
 
@@ -13,6 +19,84 @@
 // ⟦(3412)₇⟧ – skutečně, ⟦3⋅7³ + 4⋅7² + 1⋅7¹ + 2⋅7⁰ = 1029 + 196 + 7
 // + 2 = 1234⟧.  Proto ‹power_digit_sum(1234)› získáme jako ⟦3¹ + 4²
 // + 1³ + 2⁴ = 36⟧.
+int power_digit_sum(int number)
+{
+//! Inicalizace hodnot
+std::cout<<"NUMBER = "<<number<<std::endl;
+//! převod na číslice
+std::string number_txt = std::to_string(number);
+//? prevod an obraceny vysledek 7 soustavy
+std::string obraceny_vysledek;
+std::string vysledek_7s;
+int i =0;
+while(number>0)
+{
+    
+    obraceny_vysledek.push_back('0'+ (number%7));
+    number= number/7;
+    i++;
+}
+
+std::cout<<"obraceny_vysledek: "<<obraceny_vysledek<<std::endl;
+//? otocení vysledku
+int delka_obraceneho_vysldeku = obraceny_vysledek.length()-1;
+for (int i=delka_obraceneho_vysldeku; i>=0;i--)
+{
+    vysledek_7s.push_back(obraceny_vysledek[i]);
+}
+std::cout<<"vysledek_7s: "<<vysledek_7s<<std::endl;
+int delka_vysledku = vysledek_7s.length();
+//? vytvarení power_digit
+int vysledek;
+for(int i = 0;i<delka_vysledku;i++)
+{
+    vysledek += std::pow((vysledek_7s[i]-'0'),i+1);
+}
+std::cout<<"vysledek: "<<vysledek<<std::endl;
+return 0;
+}
+int main()
+{
+    power_digit_sum(1234);
+    /*
+    
+int number;
+//! Inicalizace hodnot
+std::cout<<"zadejte NUMBER: ";
+std::cin>>number;
+std::cout<<"NUMBER = "<<number<<std::endl;
+//! převod na číslice
+std::string number_txt = std::to_string(number);
+//? prevod an obraceny vysledek 7 soustavy
+std::string obraceny_vysledek;
+std::string vysledek_7s;
+int i =0;
+while(number>0)
+{
+    
+    obraceny_vysledek.push_back('0'+ (number%7));
+    number= number/7;
+    i++;
+}
+
+std::cout<<"obraceny_vysledek: "<<obraceny_vysledek<<std::endl;
+//? otocení vysledku
+int delka_obraceneho_vysldeku = obraceny_vysledek.length()-1;
+for (int i=delka_obraceneho_vysldeku; i>=0;i--)
+{
+    vysledek_7s.push_back(obraceny_vysledek[i]);
+}
+std::cout<<"vysledek_7s: "<<vysledek_7s<<std::endl;
+int delka_vysledku = vysledek_7s.length();
+//? vytvarení power_digit
+int vysledek;
+for(int i = 0;i<delka_vysledku;i++)
+{
+    vysledek += std::pow((vysledek_7s[i]-'0'),i+1);
+}
+std::cout<<"vysledek: "<<vysledek<<std::endl;
+return 0;*/
+}
 
 
 
@@ -21,10 +105,14 @@
 // maximální hodnotu (tzn. libovolné ⟦x⟧ takové, že pro všechny ⟦x'⟧
 // platí ⟦f(x) ≥ f(x')⟧, kde ⟦f⟧ je funkce, kterou počítá podprogram
 // ‹poly›).
-
-int poly(int x) {
+/*
+int poly(int x) 
+{
     return 10 + 30 * x - 15 * x * x * x + x * x * x * x * x;
 }
+int main()
+{
+}*/
 
 
 // Napište funkci, která zjistí, kolik bude pracovních dnů v roce
@@ -53,10 +141,11 @@ int poly(int x) {
 // Čistou funkci ‹first_day› můžete použít k tomu, abyste zjistili,
 // na který den v týdnu padne 1. leden daného roku. Např.
 // ‹first_day(2001)› vrátí nulu, protože rok 2001 začínal pondělím.
-
+/*
 int first_day(int year) {
     assert(year >= 1601);
     int years = year - 1601;
     int offset = years + years / 4 - years / 100 + years / 400;
     return offset % 7;
 }
+*/
