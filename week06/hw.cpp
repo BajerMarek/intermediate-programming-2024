@@ -1,10 +1,12 @@
-#include <iostream>
+# include <iostream>
 # include <vector>
 # include <cstdlib>
 # include <ctime>
 # include <cmath>
 
+# include <cassert>
 # include <string>
+# include <algorithm>
 // TODO: doplťe co potřebujete
 
 
@@ -88,11 +90,12 @@ int max_poly(int low, int high)
     }
     return nejvisi_vysledek;
 }
+/*
 int main()
 {
     std::cout<<"VYSLEDEK = "<<max_poly(1,5)<<std::endl;
 }
-
+*/
 
 // Napište funkci, která zjistí, kolik bude pracovních dnů v roce
 // ‹year›. Dny v týdnu mají hodnoty 0–6 počínaje pondělím s hodnotou 0.
@@ -128,3 +131,98 @@ int first_day(int year) {
     return offset % 7;
 }
 */
+int first_day(int year) {
+    assert(year >= 1601);
+    int years = year - 1601;
+    int offset = years + years / 4 - years / 100 + years / 400;
+    return offset % 7;
+}
+bool prestupnost(int rok) 
+{ 
+    return (((rok % 4)==false) && ((rok % 100)>0))||(rok % 400)==false;
+}
+int main()
+{
+
+    int year = 2000;
+    int pocet_dnu=0;
+
+    if(prestupnost(year))
+    {
+        int vyjimky[] = {1,121,128,186,187,271,301,321,358,359,360};
+        int size = sizeof(vyjimky) / sizeof(vyjimky[0]);
+        int index_dne=first_day(year);
+        for(int i=0;i<366;i++)
+        {
+            if(index_dne>5)
+            {
+                if(index_dne>6)
+                {
+                    index_dne=0;
+                }
+                index_dne++;
+                continue;;
+            }
+            if(index_dne<5&&(std::find(vyjimky,vyjimky+size,i)!=vyjimky+size))
+            {
+                if(index_dne>6)
+                {
+                    index_dne=0;
+                }
+                index_dne++;
+                continue;
+            }
+            else
+            {
+                pocet_dnu++;
+            }
+            
+            if(index_dne>6)
+            {
+                index_dne=0;
+            }
+            index_dne++;
+        }
+        std::cout<<pocet_dnu<<std::endl;
+    }
+    else
+    {
+        int vyjimky[] = {1,122,129,187,188,272,302,322,359,360,361};
+        int size = sizeof(vyjimky) / sizeof(vyjimky[0]);
+        int index_dne=first_day(year);
+        for(int i=0;i<365;i++)
+        {
+            if(index_dne>5)
+            {
+                if(index_dne>6)
+                {
+                    index_dne=0;
+                }
+                index_dne++;
+                continue;
+            }
+            if(index_dne<5&&(std::find(vyjimky,vyjimky+size,i)!=vyjimky+size))
+            {
+                if(index_dne>6)
+                {
+                    index_dne=0;
+                }
+                index_dne++;
+                continue;
+            }
+            else
+            {
+                pocet_dnu++;
+            }
+
+            if(index_dne>6)
+            {
+                index_dne=0;
+            }
+            index_dne++;
+        }
+        std::cout<<pocet_dnu<<std::endl;
+    }
+
+    
+}
