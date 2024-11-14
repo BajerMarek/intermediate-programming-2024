@@ -21,11 +21,37 @@
 // ⟦(3412)₇⟧ – skutečně, ⟦3⋅7³ + 4⋅7² + 1⋅7¹ + 2⋅7⁰ = 1029 + 196 + 7
 // + 2 = 1234⟧.  Proto ‹power_digit_sum(1234)› získáme jako ⟦3¹ + 4²
 // + 1³ + 2⁴ = 36⟧.
-int power_digit_sum(int number)
+
+int power_digit_sum(int num)
 {
 //! Inicalizace hodnot
-std::cout<<"NUMBER = "<<number<<std::endl;
-//! převod na číslice
+std::cout<<"NUMBER = "<<num<<std::endl;
+    int digits = 0;
+    int _num = num;
+    while (_num>0)
+    {
+        digits++;
+        _num /=7;
+    }
+    int vysledek = 0;
+    while(digits>0)
+    {
+        vysledek += std::pow(num%7,digits);
+        digits--;
+        num /=7;
+    }
+return vysledek;
+}
+
+
+int main()
+{
+    std::cout<<power_digit_sum(1234)<<std::endl;
+    return 0;
+}
+
+/*//! převod na číslice
+//! je to spatne je potreba to pouzit je za pomoci zakladnich veci
 std::string number_txt = std::to_string(number);
 //? prevod an obraceny vysledek 7 soustavy
 std::string obraceny_vysledek;
@@ -54,15 +80,9 @@ for(int i = 0;i<delka_vysledku;i++)
 {
     vysledek += std::pow((vysledek_7s[i]-'0'),i+1);
 }
-std::cout<<"vysledek: "<<vysledek<<std::endl;
-return 0;
-}/*
-int main()
-{
-    power_digit_sum(1234);
+std::cout<<"vysledek: "<<vysledek<<std::endl;*/
 
-    return 0;
-}*/
+
 
 
 
@@ -79,7 +99,7 @@ int poly(int x)
 int max_poly(int low, int high)
 {
     int nejvisi_vysledek = 0;
-    for(int i = low;i<high;i++)
+    for(int i = low;i<=high;i++)
     {
         int aktualni_vysledek = poly(i);
         //std::cout<<"aktualni vysledek: "<<poly(i)<<std::endl;
@@ -131,6 +151,7 @@ int first_day(int year) {
     return offset % 7;
 }
 */
+/*
 int first_day(int year) {
     assert(year >= 1601);
     int years = year - 1601;
@@ -144,32 +165,37 @@ bool prestupnost(int rok)
 int main()
 {
 
-    int year = 2000;
+    int year = 2024;
     int pocet_dnu=0;
+    int index_dne=first_day(year);
 
     if(prestupnost(year))
     {
         int vyjimky[] = {1,121,128,186,187,271,301,321,358,359,360};
         int size = sizeof(vyjimky) / sizeof(vyjimky[0]);
-        int index_dne=first_day(year);
-        for(int i=0;i<366;i++)
+
+        for(int i=1;i<366;i++)
         {
-            if(index_dne>5)
+            if(index_dne>4)
             {
-                if(index_dne>6)
+                if(index_dne==6)
                 {
                     index_dne=0;
                 }
-                index_dne++;
+                else{
+                    index_dne++;
+                }
                 continue;;
             }
             if(index_dne<5&&(std::find(vyjimky,vyjimky+size,i)!=vyjimky+size))
             {
-                if(index_dne>6)
+                if(index_dne==6)
                 {
                     index_dne=0;
                 }
-                index_dne++;
+                else{
+                    index_dne++;
+                }
                 continue;
             }
             else
@@ -177,37 +203,44 @@ int main()
                 pocet_dnu++;
             }
             
-            if(index_dne>6)
+            if(index_dne==6)
             {
                 index_dne=0;
             }
-            index_dne++;
+            else{
+                index_dne++;
+            }
+            
         }
+        pocet_dnu -= 2;        //velikonoce
         std::cout<<pocet_dnu<<std::endl;
     }
     else
     {
         int vyjimky[] = {1,122,129,187,188,272,302,322,359,360,361};
         int size = sizeof(vyjimky) / sizeof(vyjimky[0]);
-        int index_dne=first_day(year);
         for(int i=0;i<365;i++)
         {
-            if(index_dne>5)
+            if(index_dne>4)
             {
-                if(index_dne>6)
+                if(index_dne==6)
                 {
                     index_dne=0;
                 }
-                index_dne++;
+                else{
+                    index_dne++;
+                }
                 continue;
             }
             if(index_dne<5&&(std::find(vyjimky,vyjimky+size,i)!=vyjimky+size))
             {
-                if(index_dne>6)
+                if(index_dne==6)
                 {
                     index_dne=0;
                 }
-                index_dne++;
+                else{
+                    index_dne++;
+                }
                 continue;
             }
             else
@@ -215,14 +248,17 @@ int main()
                 pocet_dnu++;
             }
 
-            if(index_dne>6)
+            if(index_dne==6)
             {
                 index_dne=0;
             }
-            index_dne++;
+            else{
+                index_dne++;
+            }
         }
+        pocet_dnu = pocet_dnu-2;    //velikonoce 
         std::cout<<pocet_dnu<<std::endl;
     }
 
     
-}
+}*/
