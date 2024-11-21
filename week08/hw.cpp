@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 
+
 void print(std::vector<int> data) {
     if (data.size() == 0) {
         std::cout << "[]";
