@@ -20,16 +20,85 @@ void print(std::vector<int> data) {
 /*
  * Napište funkci merge, která vezme dvě vzestupně seřazená pole a spojí je do jednoho
  * vzestupně seřazeného seznamu
+ *  std::vector<int> asc1 = { 0, 2, 4, 7, 8 };
+ *  std::vector<int> asc2 = { 1, 3, 5, 6, 7, 9 };
  * */
 std::vector<int> merge(std::vector<int> a, std::vector<int> b) {
-    return {};
+    std::vector<int> vysledek={};
+
+    //? stejna velikost vektoru
+    // abych nečetl nealokovanou pamět
+    /*if (a.size()>b.size())
+    {
+        b.resize(a.size());
+    }
+    if (a.size()<b.size())
+    {
+       a.resize(b.size()); 
+    }*/
+
+    //? proměnné
+    int velikost = a.size()+b.size();
+    int value_a =0;
+    int value_b =0;
+    int idx_a =0;
+    int idx_b =0;
+
+    for(int i = 0; i < velikost; i++)
+    {   // musim porovnat hodnoty a[i] a b[i], mensí vypisu a větsí necham -> (a bylo vetsi) a[i] porovnavam s b[i+1] opakuji dokud sem nepouzil vsechny cisla.
+        value_a = a[idx_a];
+        value_b = b[idx_b];
+
+        if(value_a>value_b)
+        {
+            if(i>0 && (value_b==0))
+            {
+                vysledek.push_back(value_a);
+                continue;
+            }
+            vysledek.push_back(value_b);
+            idx_b++;
+        }
+        else
+        {
+            if(i>0 && (value_a==0))
+            {
+                vysledek.push_back(value_b);
+                continue;
+            }
+            vysledek.push_back(value_a);
+            idx_a++;
+        }
+
+    }
+    /*std::cout<<" "<<std::endl;
+    print(a);
+    std::cout<<" "<<std::endl;
+    print(b);
+    std::cout<<" "<<std::endl;*/
+    return vysledek;
 }
 
 /* Napište funkci histogram, která dostane pole čísel z rozsahu [0-100), a vrátí nové pole takové, že
  * na i-té pozici nového seznamu bude uložen počet výskytů čísla i ve vstupním poli.
  */
 std::vector<int> histogram(std::vector<int> data) {
-    return {};
+    int velikost = data.size();
+    std::vector<int> vysledek = {};
+    vysledek.resize(100);
+    for(int i = 0; i<velikost;i++)
+    {
+        int pocet_hodnot =0;
+        int value = data[i];
+        for(int i = 0; i<velikost;i++)
+        {
+            if(data[i] ==value)
+                pocet_hodnot++;
+        }
+        vysledek[value]=pocet_hodnot;
+    }
+
+    return vysledek;
 }
 
 // Napište (čistou) funkci, která simuluje jeden krok výpočtu
