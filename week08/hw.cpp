@@ -197,12 +197,12 @@ std::vector<bool> cellular_step(std::vector<bool> input) {
 
         std::cout<<val_0<<" "<<val_1<<" "<<val_2<<std::endl;
         //! vytvoreni vysledku
-        if(((val_0==0)&&(val_1==0)&&(val_2==1))||((val_0==1)&&(val_1==0)&&(val_2==0))||((val_0==1)&&(val_1==1)&&(val_2==0)))
+        if(((val_0==0)&&(val_1==0)&&(val_2==1))||((val_0==1)&&(val_1==0)&&(val_2==0))||((val_0==1)&&(val_1==0)&&(val_2==1)))
         {
             vysledek.push_back(1);
 
         }
-        if(((val_0==1)&&(val_1==1)&&(val_2==0))||((val_0==1)&&(val_1==1)&&(val_2==1)))
+        else if(((val_0==1)&&(val_1==1)&&(val_2==0))||((val_0==1)&&(val_1==1)&&(val_2==1)))
         {
             vysledek.push_back(0);
 
@@ -210,6 +210,7 @@ std::vector<bool> cellular_step(std::vector<bool> input) {
         else
         {
             vysledek.push_back(val_1);
+            //std::cout<<"value1 je: "<<val_1<<std::endl;
         }
     }
     return vysledek;
