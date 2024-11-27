@@ -16,6 +16,19 @@ void print(std::vector<int> data) {
     std::cout << data.back() << " ]";
 }
 
+void print_bool(std::vector<bool> data) {
+    if (data.size() == 0) {
+        std::cout << "[]";
+        return;
+    }
+
+    std::cout << "[ ";
+    for (std::size_t i = 0; i < data.size() - 1; i++) {
+        std::cout << data[i] << ", ";
+    }
+
+    std::cout << data.back() << " ]";
+}
 
 /*
  * Napište funkci merge, která vezme dvě vzestupně seřazená pole a spojí je do jednoho
@@ -155,10 +168,61 @@ std::vector<int> histogram(std::vector<int> data) {
 // pravidel na ‹state›.
 
 std::vector<bool> cellular_step(std::vector<bool> input) {
-    return input;
-}
+    std::vector<bool> vysledek ={};
+    int velikost = input.size();
+    int val_0 = 0;
+    int val_1 = 0;
+    int val_2 = 0;
 
+    for(int i = 0; i<velikost; i++)
+    {
+        //! ziskani dat
+        if((i-1)<0)
+        {
+            val_0 =0;
+        }
+        else
+        {
+            val_0 = input[i-1];
+        }
+        if((i+1)>velikost)
+        {
+            val_2 =0;
+        }
+        else
+        {
+            val_2 = input[i+1];
+        }
+        val_1= input[i];
+
+        std::cout<<val_0<<" "<<val_1<<" "<<val_2<<std::endl;
+        //! vytvoreni vysledku
+        if(((val_0==0)&&(val_1==0)&&(val_2==1))||((val_0==1)&&(val_1==0)&&(val_2==0))||((val_0==1)&&(val_1==1)&&(val_2==0)))
+        {
+            vysledek.push_back(1);
+
+        }
+        if(((val_0==1)&&(val_1==1)&&(val_2==0))||((val_0==1)&&(val_1==1)&&(val_2==1)))
+        {
+            vysledek.push_back(0);
+
+        }
+        else
+        {
+            vysledek.push_back(val_1);
+        }
+    }
+    return vysledek;
+}
+// │‹old[i - 1]›│‹old[i]›│‹old[i + 1]›│‹new[i]›│
+// ├┄┄┄┄┄┄┄┄┄┄┄┄┼┄┄┄┄┄┄┄┄┼┄┄┄┄┄┄┄┄┄┄┄┄│┄┄┄┄┄┄┄┄│
+// │     0      │    0   │      1     │    1   │
+// │     1      │    0   │      0     │    1   │
+// │     1      │    0   │      1     │    1   │
+// │     1      │    1   │      0     │    0   │
+// │     1      │    1   │      1     │    0   │
 int main() {
+    std::vector<bool> vlastni ={ 0, 1, 1, 0, 0, 1 };
     std::vector<int> vec1 = { 1, 9, 4, 8, 4, 0, 9, 2, 3, 5, 6 };
     std::vector<int> asc1 = { 0, 2, 4, 7, 8 };
     std::vector<int> asc2 = { 1, 3, 5, 6, 7, 9 };
@@ -199,4 +263,5 @@ int main() {
     std::cout << "histogram(vec2): ";
     print(histogram(vec2));
     std::cout << std::endl;
+    print_bool(cellular_step(vlastni));
 }
