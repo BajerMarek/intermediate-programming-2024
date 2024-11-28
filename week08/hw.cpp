@@ -99,8 +99,13 @@ std::vector<int> histogram(std::vector<int> data) {
     int velikost = data.size();
     std::vector<int> vysledek = {};
     vysledek.resize(100);
+
     for(int i = 0; i<velikost;i++)
     {
+        vysledek[data[i]]++;
+    }
+        //! kvadraticky vstup do funkce
+        /*
         int pocet_hodnot =0;
         int value = data[i];
         for(int i = 0; i<velikost;i++)
@@ -108,8 +113,7 @@ std::vector<int> histogram(std::vector<int> data) {
             if(data[i] ==value)
                 pocet_hodnot++;
         }
-        vysledek[value]=pocet_hodnot;
-    }
+        vysledek[value]=pocet_hodnot;*/
 
     return vysledek;
 }
@@ -176,6 +180,7 @@ std::vector<bool> cellular_step(std::vector<bool> input) {
 
     for(int i = 0; i<velikost; i++)
     {
+        /**/
         //! ziskani dat
         if((i-1)<0)
         {
