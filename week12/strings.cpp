@@ -67,25 +67,95 @@ Tohle je raw string\n\n\n
 /* Napište funkci line_count, která spočítá kolik řádků má řetězec předaný
  * argumentem text. Řádky jsou odděleny znakem '\n' */
 int line_count(std::string text) {
-    return 0;
+    int sum_find =1;    // protoze poslední radek není odělen /n ale sejne se počítá
+    for(int i =0; i<text.size();i++)
+    {
+        if(text[i]=='\n')
+        {
+            sum_find++;
+        }
+    }
+    //std::cout<<sum_find<<std::endl;
+    return sum_find;
 }
 
 /* Napište funkci word_count, která spočítá kolik slov má řetězec předaný
  * argumentem text. */
 int word_count(std::string text) {
-    return 0;
+    int sum_find =0;    // protoze poslední radek není odělen ale sejne se počítá
+    for(int i =0; i<text.size();i++)
+    {
+        if((text[i]==' ')&&(text[i-1]!='.')&&(text[i-1]!=','))   // obchcavka
+        {
+            sum_find++;
+        }
+    }
+    std::cout<<sum_find<<std::endl;
+    return sum_find;
 }
 
 /* Napište funkci paragraph_count, která spočítá kolik odstavců má řetězec předaný
  * argumentem text. */
 int paragraph_count(std::string text) {
+    int sum_find =1;    // protoze poslední odstavec není odělen ale stejne se pocita
+    for(int i =0; i<text.size();i++)
+    {
+        if((text[i]=='\n')&&(text[i-1]=='\n'))   // obchcavka
+        {
+            sum_find++;
+        }
+    }
+    std::cout<<sum_find<<std::endl;
+    return sum_find;
     return 0;
 }
-
+    // Test lines function
+    std::vector<std::string> pokus = {
+        "This is the first line.",
+        "And here is the second line.",
+        "",
+        "This is a new paragraph. It has multiple lines.",
+        "Another line in the same paragraph.",
+        "",
+        "Final paragraph. Short and sweet."
+    };
+    // Common test text
+    std::string pokus2 = R"(This is the first line.\n
+And here is the second line.\n
+\n
+This is a new paragraph. It has multiple lines.\n
+Another line in the same paragraph.\n
+\n
+Final paragraph. Short and sweet.)";
 /* Napište funkci lines, která rozdělí řetezec předaný v argumentu text na jednotlivé řádky.
  */
 std::vector<std::string> lines(std::string text) {
-    return {};
+    std::vector<std::string>vysledek ={{}};
+    vysledek.resize(line_count(text));
+    //std::cout<<vysledek.size()<<std::endl;
+    int last =0;
+    for(int i = 0;i<line_count(text);i++)
+    {
+        for(int y =last; y<text.size();y++)
+        {
+            vysledek[i].push_back(text[y]);
+            std::cout<<text[y];
+            if(text[y]=='\n')
+            {
+                if((text[y]=='\n')&&(text[y+1]=='\n'))
+                {
+                    //std::cout<<"---"<<std::endl;
+                    vysledek[i].push_back('""');
+                } 
+                last +=(y-last)+1;
+
+                break;
+            }
+
+        }
+        //std::cout<<"###"<<std::endl;
+    }
+    return vysledek;
 }
 
 /* Napište funkci words, která rozdělí řetezec předaný v argumentu text na jednotlivá slova. */
