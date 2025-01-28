@@ -120,115 +120,89 @@ int paragraph_count(std::string text) {
         "Final paragraph. Short and sweet."
     };
     // Common test text
-std::string input = R"(This is the first line.\n
-And here is the second line.\n
-\n
-This is a new paragraph. It has multiple lines.\n
-Another line in the same paragraph.\n
-\n
+std::string input = R"(This is the first line.
+And here is the second line.
+
+This is a new paragraph. It has multiple lines.
+Another line in the same paragraph.
+
 Final paragraph. Short and sweet.)";
 /* Napište funkci lines, která rozdělí řetezec předaný v argumentu text na jednotlivé řádky.
  */
 std::vector<std::string> lines(std::string text) {
-    std::vector<std::string>vysledek;
+    std::vector<std::string>vysledek ={{}};
+    vysledek.resize(line_count(text));
     std::cout<<line_count(text)<<std::endl;
     int last =0;
-    int size =text.size();
-    for(int i =0; i < size; i++)
+    for(int i = 0;i<line_count(text);i++)
     {
-        if(text[i] == '\n')
+        for(int y =last; y<text.size();y++)
         {
-            vysledek.push_back(text.substr(last,i-last));  
-            std::cout<<text.substr(last,i-last)<<std::endl;
-            last =i+1;
+            std::cout<<text[y];
+            if(text[y]=='\n')
+            {
+                /* if((text[y]=='\n')&&(text[y+1]=='\n'))
+                {
+                    std::string empty = "";
+                    //std::cout<<"---"<<std::endl;
+                    vysledek[i].push_back();
+                }*/  
+                last +=(y-last)+1;
+
+                break;
+            }
+            vysledek[i].push_back(text[y]);
+
         }
-    }
-    if(last<size)
-    {
-       vysledek.push_back(text.substr(last));  
-       std::cout<<text.substr(last)<<std::endl;
+        //std::cout<<"###"<<std::endl;// protoze proste to totady musí být
     }
     return vysledek;
 }
 //! předělat pouze na jeden loop jde to i na while
 /* Napište funkci words, která rozdělí řetezec předaný v argumentu text na jednotlivá slova. */
 std::vector<std::string> words(std::string text) {
-    std::vector<std::string>vysledek;
-    std::cout<<line_count(text)<<std::endl;
+    std::vector<std::string>vysledek ={{}};
+    vysledek.resize(word_count(text));   
+    std::cout<<vysledek.size()<<std::endl;
+    std::cout<<text.size()<<std::endl;
     int last =0;
-    int size =text.size();
-    for(int i =0; i < size; i++)
+    for(int i = 0;i<word_count(text);i++)
     {
-        if((text[i]=='\n')&&(text[i-1]=='\n'))
+        for(int y =last; y<text.size();y++)
         {
-            last = i+1;
-            continue;
+            if((text[y]==' ')||(text[y]=='\n'))
+            {
+
+                while((text[y]==' ')||(text[y]=='\n'))
+                {
+                    y++;
+                }
+
+                last +=(y-last);
+                std::cout<<"##";
+                std::cout<<"i je: "<<i<<std::endl;
+                break;
+            }
+            std::cout<<text[y];
+            vysledek[i].push_back(text[y]);
         }
-        if((text[i]==' ')||(text[i]=='\n'))
-        {
-            vysledek.push_back(text.substr(last,i-last));  
-            std::cout<<text.substr(last,i-last)<<std::endl;
-            last =i+1;
-        }
+        //std::cout<<"###"<<std::endl;// protoze proste to totady musí být    
     }
-    if(last<size)
-    {
-       vysledek.push_back(text.substr(last));  
-       std::cout<<text.substr(last)<<std::endl;
-    }
+    
     return vysledek;
+    //return {};
 }
 
 /* Napište funkci paragraphs, která rozdělí řetezec předaný v argumentu text na jednotlivé odstavce. */
 std::vector<std::string> paragraphs(std::string text) {
-    std::vector<std::string>vysledek;
-    std::cout<<line_count(text)<<std::endl;
-    int last =0;
-    int size =text.size();
-    for(int i =0; i < size; i++)
-    {
-        if((text[i]=='\n')&&(text[i-1]=='\n'))
-        {
-            i--;
-            vysledek.push_back(text.substr(last,i-last));  
-            std::cout<<text.substr(last,i-last)<<std::endl;
-            std::cout<<"#######"<<std::endl;
-            i++;
-            last =i+1;
-        }
-    }
-    if(last<size)
-    {
-       vysledek.push_back(text.substr(last));  
-       std::cout<<text.substr(last)<<std::endl;
-    }
-    return vysledek;
+    return {};
 }
 
 /* Naimplementujte funkci check_brackets,
  * která zkontroluje jestli je text předaný v argumentu text validní
  * Text je validní pokud každá otevírací závorka '(' má náležitou uzavírací závorku ')' */
 bool check_brackets(std::string text) {
-    int check =0;
-    for(int i = 0; i<text.size();i++)
-    {
-        if(text[i]=='(')
-        {
-            check++;
-        }
-        if(text[i]==')')
-        {
-            check--;
-        }
-    }
-    if(check ==0)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    return false;
 }
 
 int main() {
