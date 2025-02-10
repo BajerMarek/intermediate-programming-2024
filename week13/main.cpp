@@ -94,6 +94,7 @@ void showcase_map() {
 }
 
 int main() {
+    //showcase_set();
     showcase_map();
     //showcase_map();
 }
