@@ -39,7 +39,7 @@ void showcase_set() {
     std::set<int> a = {0, 1, 2, 2};
 
     a.size();
-
+    
     a.insert(0);
 
     a.contains(6);
