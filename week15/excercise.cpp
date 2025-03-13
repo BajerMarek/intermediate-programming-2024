@@ -60,7 +60,31 @@ struct School {
  * 3) Žádný vyučující neučí zaráz více věcí
  */
 bool is_valid(School school) {
-    return true;
+    //!žádný žak nebude ve třídě dvakrát
+    std::vector<std::set<Student>,TimetableSlot> zak_info;
+    //? projde všechyn třídy
+    for(const auto& trida_info : school.classes)
+    {
+        std::set<Student> zaci_ve_tride;
+        //?projed všechyn žáky ve třídě
+        for(const auto& zak_ve_tride : trida_info.students)
+        {   
+            if(!(zaci_ve_tride.contains(zak_ve_tride)))
+            {
+                zaci_ve_tride.insert(zak_ve_tride);
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+    // for(auto[studenti_set,cas] : zak_info)
+    // {
+    //     for(auto[studenti]:studenti_set)
+    //     std::cout<<"studens se jemenem ve třídě: "<< studenti.name<<std::endl;
+    // }
+    return false;
 }
 
 void test_is_valid() {
